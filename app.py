@@ -7,6 +7,7 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session, session
 from sqlalchemy import create_engine, func
 
+from config import DATABASE_URI
 
 from flask import Flask, jsonify
 
@@ -14,7 +15,7 @@ from flask import Flask, jsonify
 # Database Setup
 #################################################
 app = Flask(__name__)
-DATABASE_URI = 'postgres+psycopg2://dbmasteruser:Team5-2021@ls-9dc0a19195512b796216f97c13965ecf3207dea1.cqt5opbeh6hz.us-east-1.rds.amazonaws.com:5432/postgres'
+#DATABASE_URI = 'postgres+psycopg2://dbmasteruser:Team5-2021@ls-9dc0a19195512b796216f97c13965ecf3207dea1.cqt5opbeh6hz.us-east-1.rds.amazonaws.com:5432/postgres'
 engine = sqlalchemy.create_engine(DATABASE_URI)
 
 
@@ -25,8 +26,8 @@ def home():
     )
 
 
-@app.route("/about")
-def about():
+@app.route("/toppais")
+def toppais():
     data = engine.execute(
         "SELECT cultivo, SUM(valorproduccion) FROM agr2017 GROUP BY cultivo LIMIT 20")
     #df = pd.read_sql_query(query, engine)
@@ -40,8 +41,8 @@ def about():
     return jsonify(all_data)
 
 
-@app.route("/estado")
-def estado():
+@app.route("/estadocrop")
+def estadocrop():
     data = engine.execute(
         "SELECT estado, cultivo, SUM(valorproduccion) FROM agr2017 GROUP BY estado, cultivo;")
     all_data = []
