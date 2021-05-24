@@ -3,7 +3,7 @@ var st_url="https://leonidesguerra.github.io/mexican_states";
 
 
 // Variables  that will pull data from the dropdown
-var estado = 'Republica';
+var estado = 'Veracruz';
 let crop = 'Naranja';
 var estmod = 'Republica';
 
