@@ -109,4 +109,6 @@ L.HeatLayer = (L.Layer ? L.Layer : L.Class).extend({ initialize: function(t, i) 
       a = this._map._getCenterOffset(t.center)._multiplyBy(-i).subtract(this._map._getMapPanePos()); L.DomUtil.setTransform ? L.DomUtil.setTransform(this._canvas, a, i) : this._canvas.style[L.DomUtil.TRANSFORM] = L.DomUtil.getTranslateString(a) + " scale(" + i + ")";
   } }), L.heatLayer = function(t, i) {
     return new L.HeatLayer(t, i);
+
+  
   };

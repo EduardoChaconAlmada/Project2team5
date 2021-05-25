@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Visualizations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/style.css" />
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body style="background-color: rgb(207, 228, 190)">
+
+    <div class="container">
+        <a href="index.html">
+            Regresar
+        </a>
+        <br><br>
+        <h1>México Crop Visualizations</h1>
+        <br><br>
+        <p></p>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <form>
+                    <select id="region">
+                        <option value='none' selected disabled hidden>Selecciona un Estado</option>
+                        <option value='Republica'>República Mexicana</option>
+                        <option value='Aguascalientes'>Aguascalientes</option>
+                        <option value='Baja California'>Baja California</option>
+                        <option value='Baja California Sur'>Baja California Sur</option>
+                        <option value='Campeche'>Campeche</option>
+                        <option value='Colima'>Colima</option>
+                        <option value='Chiapas'>Chiapas</option>
+                        <option value='Chihuahua'>Chihuahua</option>
+                        <option value='Ciudad de México / DF'>Ciudad de México / DF</option>
+                        <option value='Durango'>Durango</option>
+                        <option value='Guanajuato'>Guanajuato</option>
+                        <option value='Guerrero'>Guerrero</option>
+                        <option value='Hidalgo'>Hidalgo</option>
+                        <option value='Jalisco'>Jalisco</option>
+                        <option value='México'>México</option>
+                        <option value='Michoacán'>Michoacán</option>
+                        <option value='Morelos'>Morelos</option>
+                        <option value='Nayarit'>Nayarit</option>
+                        <option value='Nuevo León'>Nuevo León</option>
+                        <option value='Oaxaca'>Oaxaca</option>
+                        <option value='Puebla'>Puebla</option>
+                        <option value='Querétaro'>Querétaro</option>
+                        <option value='Quintana Roo'>Quintana Roo</option>
+                        <option value='San Luis Potosí'>San Luis Potosí</option>
+                        <option value='Sinaloa'>Sinaloa</option>
+                        <option value='Sonora'>Sonora</option>
+                        <option value='Tabasco'>Tabasco</option>
+                        <option value='Tamaulipas'>Tamaulipas</option>
+                        <option value='Tlaxcala'>Tlaxcala</option>
+                        <option value='Veracruz'>Veracruz</option>
+                        <option value='Yucatán'>Yucatán</option>
+                        <option value='Zacatecas'>Zacatecas</option>
+                    </select>
+                </form>
+            </div>
+
+            <div class="col-sm-3">
+                <form>
+                    <select name="dropdown">
+                        <option value='none' selected disabled hidden>Selecciona un Cultivo</option>
+                        <option value=5000000>Aceituna</option>
+                        <option value=5010000>Acelga</option>
+                        <option value=5020000>Achiote</option>
+                        <option value=5040000>Agapando</option>
+                        <option value=5050000>Agave</option>
+                        <option value=5060000>Aguacate</option>
+                        <option value=5070000>Ajo</option>
+                        <option value=5080000>Ajonjolí</option>
+                        <option value=5110000>Albahaca</option>
+                        <option value=5120000>Albricia</option>
+                        <option value=5130000>Alcachofa</option>
+                        <option value=5150000>Alcatraz</option>
+                        <option value=5160000>Alfalfa achicalada</option>
+                        <option value=5170000>Alfalfa verde</option>
+                        <option value=5180000>Algarrobo</option>
+                        <option value=5190000>Algodón hueso</option>
+                        <option value=5220000>Alhelí</option>
+                        <option value=5230000>Alhelí</option>
+                        <option value=5240000>Alhelí</option>
+                        <option value=5270000>Alpiste</option>
+                        <option value=5271000>Alpiste ornamental</option>
+                        <option value=5330000>Alstroemeria</option>
+                        <option value=5340000>Amaranto</option>
+                        <option value=5350000>Anís</option>
+                        <option value=5365000>Anturios</option>
+                        <option value=5370000>Apio</option>
+                        <option value=5650000>Arándano</option>
+                        <option value=5390000>Árbol de navidad</option>
+                        <option value=5395000>Aretillo</option>
+                        <option value=5400000>Arrayán</option>
+                        <option value=5410000>Arroz palay</option>
+                        <option value=5430000>Arvejón</option>
+                        <option value=5450000>Aster</option>
+                        <option value=5470000>Ave del paraíso</option>
+                        <option value=5490000>Avena forrajera en verde</option>
+                        <option value=5510000>Avena grano</option>
+                        <option value=5560000>Baby back choi</option>
+                        <option value=9940000>Bambú</option>
+                        <option value=5570000>Bangaña</option>
+                        <option value=5600000>Begonia</option>
+                        <option value=5605000>Belén</option>
+                        <option value=5610000>Berenjena</option>
+                        <option value=5640000>Betabel</option>
+                        <option value=5670000>Brócoli</option>
+                        <option value=5690000>Cacahuate</option>
+                        <option value=5700000>Cacao</option>
+                        <option value=5710000>Café cereza</option>
+                        <option value=5730000>Caimito</option>
+                        <option value=5740000>Calabacita</option>
+                        <option value=5760000>Calabaza</option>
+                        <option value=5770000>Calabaza semilla o chihua</option>
+                        <option value=5780000>Calancoe</option>
+                        <option value=5790000>Camote</option>
+                        <option value=5810000>Canola</option>
+                        <option value=5820000>Caña de azúcar</option>
+                        <option value=5823000>Caña de azúcar forrajera</option>
+                        <option value=5821000>Caña de azúcar fruta</option>
+                        <option value=5822000>Caña de azúcar piloncillo</option>
+                        <option value=5840000>Capulín</option>
+                        <option value=5850000>Carambolo</option>
+                        <option value=5870000>Cártamo</option>
+                        <option value=5875000>Cártamo forrajero en verde</option>
+                        <option value=5900000>Cebada forrajera en verde</option>
+                        <option value=5920000>Cebada grano</option>
+                        <option value=5940000>Cebolla</option>
+                        <option value=6000000>Centeno grano</option>
+                        <option value=6010000>Cereza</option>
+                        <option value=6020000>Chabacano</option>
+                        <option value=6040000>Chay</option>
+                        <option value=6050000>Chayote</option>
+                        <option value=6060000>Chía</option>
+                        <option value=6070000>Chícharo</option>
+                        <option value=6090000>Chilacayote</option>
+                        <option value=6110000>Chile seco</option>
+                        <option value=6120000>Chile verde</option>
+                        <option value=6160000>Chirimoya</option>
+                        <option value=6170000>Chives</option>
+                        <option value=6190000>Cilantro</option>
+                        <option value=6210000>Cineraria</option>
+                        <option value=6220000>Ciruela</option>
+                        <option value=6250000>Clavel</option>
+                        <option value=6300000>Coco fruta</option>
+                        <option value=6310000>Col (repollo)</option>
+                        <option value=6320000>Col de bruselas</option>
+                        <option value=6330000>Coliflor</option>
+                        <option value=6390000>Comino</option>
+                        <option value=6400000>Copra</option>
+                        <option value=6410000>Coquia</option>
+                        <option value=6450000>Crisantemo</option>
+                        <option value=6455000>Crisantemo</option>
+                        <option value=6460000>Cyclamen</option>
+                        <option value=1504000>Dalia</option>
+                        <option value=6490000>Dátil</option>
+                        <option value=6520000>Dólar</option>
+                        <option value=6530000>Durazno</option>
+                        <option value=6540000>Ebo (janamargo o veza)</option>
+                        <option value=6600000>Ejote</option>
+                        <option value=6610000>Elote</option>
+                        <option value=6620000>Eneldo</option>
+                        <option value=6630000>Epazote</option>
+                        <option value=6650000>Espárrago</option>
+                        <option value=6660000>Especias y medicinales</option>
+                        <option value=6670000>Espinaca</option>
+                        <option value=6680000>Estropajo</option>
+                        <option value=6690000>Eucalipto</option>
+                        <option value=1509000>Flor hawaiana</option>
+                        <option value=1508000>Flor lisianthus</option>
+                        <option value=6740000>Flor perrito</option>
+                        <option value=6810000>Frambuesa</option>
+                        <option value=6820000>Fresa</option>
+                        <option value=6830000>Fresa</option>
+                        <option value=6840000>Frijol</option>
+                        <option value=15070000>Frijol forrajero</option>
+                        <option value=6855000>Frijol x pelón</option>
+                        <option value=6880000>Gai lan (kay laan)</option>
+                        <option value=6890000>Garbanzo forrajero</option>
+                        <option value=6900000>Garbanzo grano</option>
+                        <option value=6905000>Garbanzo porquero</option>
+                        <option value=6920000>Geranio</option>
+                        <option value=6930000>Gerbera</option>
+                        <option value=6940000>Girasol</option>
+                        <option value=6950000>Girasol flor</option>
+                        <option value=6960000>Girasol forrajero</option>
+                        <option value=6990000>Gladiola</option>
+                        <option value=7010000>Granada</option>
+                        <option value=7020000>Guaje</option>
+                        <option value=7030000>Guaje (verdura)</option>
+                        <option value=7040000>Guamúchil</option>
+                        <option value=7050000>Guanábana</option>
+                        <option value=7060000>Guayaba</option>
+                        <option value=7100000>Haba grano</option>
+                        <option value=7110000>Haba verde</option>
+                        <option value=9390000>Helecho</option>
+                        <option value=7130000>Henequén</option>
+                        <option value=7140000>Hierbabuena</option>
+                        <option value=7150000>Higo</option>
+                        <option value=7160000>Higuerilla</option>
+                        <option value=9600000>Hoja de plátano (belillo)</option>
+                        <option value=7165000>Hongos, setas y champiñones</option>
+                        <option value=7175000>Hortensia</option>
+                        <option value=7180000>Huauzontle</option>
+                        <option value=7190000>Hule hevea</option>
+                        <option value=7200000>Inmortal</option>
+                        <option value=7210000>Jaca (jackfruit)</option>
+                        <option value=7220000>Jamaica</option>
+                        <option value=9500000>Jatropha</option>
+                        <option value=7230000>Jenjibre</option>
+                        <option value=7240000>Jícama</option>
+                        <option value=7270000>Kale</option>
+                        <option value=7320000>Kohlrabi</option>
+                        <option value=7330000>Lechuga</option>
+                        <option value=7350000>Lenteja</option>
+                        <option value=7375000>Lilium</option>
+                        <option value=7370000>Lilium</option>
+                        <option value=7380000>Lima</option>
+                        <option value=7390000>Limón</option>
+                        <option value=7400000>Limón real</option>
+                        <option value=7405000>Limonium</option>
+                        <option value=7410000>Linaza</option>
+                        <option value=7420000>Litchi</option>
+                        <option value=7440000>Macadamia</option>
+                        <option value=7452000>Maguey</option>
+                        <option value=9920000>Maguey forrajero</option>
+                        <option value=7451000>Maguey mixiotero</option>
+                        <option value=7450000>Maguey pulquero</option>
+                        <option value=7470000>Maíz forrajero en verde</option>
+                        <option value=7490000>Maíz grano</option>
+                        <option value=7510000>Maíz palomero</option>
+                        <option value=7530000>Malanga</option>
+                        <option value=7540000>Mamey</option>
+                        <option value=7550000>Mandarina</option>
+                        <option value=7560000>Mango</option>
+                        <option value=9960000>Mangostán</option>
+                        <option value=7570000>Mano de león</option>
+                        <option value=7575000>Mano de león</option>
+                        <option value=7580000>Manzana</option>
+                        <option value=7590000>Manzanilla</option>
+                        <option value=7600000>Maracuyá</option>
+                        <option value=7610000>Marañón</option>
+                        <option value=7630000>Margarita</option>
+                        <option value=7660000>Mejorana</option>
+                        <option value=7670000>Melón</option>
+                        <option value=7675000>Melón amargo</option>
+                        <option value=7690000>Membrillo</option>
+                        <option value=7700000>Menta</option>
+                        <option value=7750000>Mijo forrajero verde</option>
+                        <option value=7755000>Moringa</option>
+                        <option value=7780000>Nabo</option>
+                        <option value=7790000>Nabo forrajero</option>
+                        <option value=7830000>Nanche</option>
+                        <option value=7840000>Napa</option>
+                        <option value=7850000>Naranja</option>
+                        <option value=7870000>Nardo</option>
+                        <option value=7890000>Níspero</option>
+                        <option value=7900000>Nochebuena</option>
+                        <option value=7905000>Noni</option>
+                        <option value=7910000>Nopal forrajero</option>
+                        <option value=7920000>Nopalitos</option>
+                        <option value=7950000>Nube</option>
+                        <option value=7930000>Nube</option>
+                        <option value=7960000>Nuez</option>
+                        <option value=7980000>Okra (angú o gombo)</option>
+                        <option value=8010000>Orégano</option>
+                        <option value=8015000>Orquídea</option>
+                        <option value=8020000>Pak choi</option>
+                        <option value=8030000>Palma africana o de aceite</option>
+                        <option value=8070000>Palma camedor</option>
+                        <option value=8060000>Palma de ornato</option>
+                        <option value=8050000>Palma de ornato</option>
+                        <option value=8080000>Palma taco</option>
+                        <option value=1400000>Palo de arco</option>
+                        <option value=8100000>Papa</option>
+                        <option value=8120000>Pápalo</option>
+                        <option value=8130000>Papaya</option>
+                        <option value=8150000>Pasto tapete</option>
+                        <option value=15050000>Pastos y praderas</option>
+                        <option value=8205000>Pensamiento</option>
+                        <option value=8210000>Pepino</option>
+                        <option value=8230000>Pera</option>
+                        <option value=8240000>Perejil</option>
+                        <option value=8250000>Perón</option>
+                        <option value=8260000>Persimonio</option>
+                        <option value=8270000>Petunia</option>
+                        <option value=8280000>Pimienta</option>
+                        <option value=8290000>Piña</option>
+                        <option value=8300000>Piñón</option>
+                        <option value=8320000>Pipicha</option>
+                        <option value=8330000>Pistache</option>
+                        <option value=8340000>Pitahaya</option>
+                        <option value=8350000>Pitaya</option>
+                        <option value=8370000>Plantas de ornato</option>
+                        <option value=8380000>Plantero de tabaco</option>
+                        <option value=8390000>Plátano</option>
+                        <option value=8410000>Polar</option>
+                        <option value=8400000>Polar</option>
+                        <option value=8430000>Pon-pon</option>
+                        <option value=8440000>Poro (leek)</option>
+                        <option value=8460000>Quelite</option>
+                        <option value=8490000>Rábano</option>
+                        <option value=8510000>Rambután</option>
+                        <option value=8520000>Rapini</option>
+                        <option value=8540000>Remolacha forrajera</option>
+                        <option value=8580000>Romerito</option>
+                        <option value=8590000>Romero</option>
+                        <option value=8610000>Rosa</option>
+                        <option value=8620000>Rosa</option>
+                        <option value=8680000>Sábila</option>
+                        <option value=8700000>Salvia</option>
+                        <option value=8710000>Sandía</option>
+                        <option value=8730000>Saramuyo</option>
+                        <option value=5380000>Semilla de apio</option>
+                        <option value=5520000>Semilla de avena grano</option>
+                        <option value=5680000>Semilla de brócoli</option>
+                        <option value=1510000>Semilla de cacahuate</option>
+                        <option value=5830000>Semilla de caña de azúcar</option>
+                        <option value=5930000>Semilla de cebada grano</option>
+                        <option value=9950000>Semilla de cebollín</option>
+                        <option value=6200000>Semilla de cilantro</option>
+                        <option value=6790000>Semilla de flores</option>
+                        <option value=6850000>Semilla de frijol</option>
+                        <option value=1500000>Semilla de garbanzo grano</option>
+                        <option value=1501000>Semilla de garbanzo porquero</option>
+                        <option value=9980000>Semilla de haba</option>
+                        <option value=7250000>Semilla de jícama</option>
+                        <option value=7500000>Semilla de maíz grano</option>
+                        <option value=8110000>Semilla de papa</option>
+                        <option value=9250000>Semilla de pastos y praderas</option>
+                        <option value=8820000>Semilla de sorgo grano</option>
+                        <option value=8840000>Semilla de soya</option>
+                        <option value=9060000>Semilla de trigo grano</option>
+                        <option value=9970000>Semilla de triticale grano</option>
+                        <option value=8735000>Shangai-bock-choy</option>
+                        <option value=8740000>Shop suey</option>
+                        <option value=8760000>Solidago</option>
+                        <option value=8770000>Sorgo escobero</option>
+                        <option value=8790000>Sorgo forrajero en verde</option>
+                        <option value=8810000>Sorgo grano</option>
+                        <option value=8830000>Soya</option>
+                        <option value=8860000>Statice</option>
+                        <option value=8850000>Statice</option>
+                        <option value=9800000>Stevia</option>
+                        <option value=8870000>Tabaco</option>
+                        <option value=8880000>Tamarindo</option>
+                        <option value=8890000>Tangelo</option>
+                        <option value=8995000>Tangerina</option>
+                        <option value=8910000>Tarragón</option>
+                        <option value=8920000>Té limón</option>
+                        <option value=8930000>Tejocote</option>
+                        <option value=8950000>Terciopelo</option>
+                        <option value=8970000>Tomate rojo (jitomate)</option>
+                        <option value=8980000>Tomate verde</option>
+                        <option value=8990000>Tomillo</option>
+                        <option value=9000000>Toronja (pomelo)</option>
+                        <option value=9010000>Trébol</option>
+                        <option value=9040000>Trigo forrajero verde</option>
+                        <option value=9050000>Trigo grano</option>
+                        <option value=9070000>Trigo ornamental</option>
+                        <option value=9090000>Triticale forrajero en verde</option>
+                        <option value=9110000>Triticale grano</option>
+                        <option value=9115000>Tulipán holandés</option>
+                        <option value=9120000>Tuna</option>
+                        <option value=9130000>Uva</option>
+                        <option value=9140000>Vainilla</option>
+                        <option value=9170000>Verdolaga</option>
+                        <option value=9900000>Viveros de durazno</option>
+                        <option value=1000000>Viveros de manzana</option>
+                        <option value=1200000>Viveros de nuez</option>
+                        <option value=9212000>Yuca alimenticia</option>
+                        <option value=9210000>Yu-choy</option>
+                        <option value=9270000>Zanahoria</option>
+                        <option value=9290000>Zapote</option>
+                        <option value=9930000>Zapote chiclero</option>
+                        <option value=9300000>Zapupe</option>
+                        <option value=9310000>Zarzamora</option>
+                        <option value=9320000>Zempoalxochitl</option>
+                        <option value=9380000>Zempoalxochitl</option>
+                        <option value=9330000>Zempoalxochitl</option>
+                        <option value=9400000>Zempoalxochitl</option>
+
+                    </select>
+                </form>
+            </div>
+            
+        </div>
+        <br>
+            
+        <br><br>
+        <div class="container-fluid">
+            <div class="mapbox">
+                <div class="row-fluid" id="map"><img src="//placehold.it/1300x600"></div>
+                 
+                </div>
+            </div>
+
+        <br><br>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <p>Paso 3: Top 10 crops in México</p>
+                <div id="plot1"></div>
+            </div>
+            <div class="col-sm-6">
+                <p>Paso 4: Top 10 crops per state
+                </p>
+                <div id="plot"></div>  
+            </div>
+        </div>
+        <div class ="row">
+            <div class="col-sm-6">
+                <p> </p>
+
+        </div>
+    <!-- API key -->
+    <script type="text/javascript" src="static/js/config.js"></script>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+    <!-- D3 CDN -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- JS -->
+   <!-- script type <="text/javascript" src="static/js/just-crime.js"></script> -->
+    <script type="text/javascript" src="static/js/heatmap.js"></script>
+
+    <!-- Leaflet heatmap plugin-->
+    <script type="text/javascript" src="static/js/leaflet-heat.js"></script>
+
+
+
+
+
+
+
+</body>
+
+</html>
