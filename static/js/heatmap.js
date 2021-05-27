@@ -322,7 +322,6 @@ d3.select("button").on("click",(d)=>{
 
     });
     
-
     if(estado ==='republica' && crop === 'all'){
       d3.select("#mapTt").text("Mexico heatmap of all crops");
     }else if(estado === 'republica'){
@@ -332,7 +331,6 @@ d3.select("button").on("click",(d)=>{
     }else{
       d3.select("#mapTt").text(`${crop} crop in the state of ${estado}`);
     }
-
 
 });
 
