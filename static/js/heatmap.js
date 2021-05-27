@@ -1,7 +1,7 @@
 var url = "https://evening-mesa-81552.herokuapp.com/mapa";
-var st_url = "https://leonidesguerra.github.io/mexican_states";
+var st_url = "https://evening-mesa-81552.herokuapp.com/mexican_states";
 let cropurl = "https://evening-mesa-81552.herokuapp.com/estadocrop"
-let topurl = "https://leonidesguerra.github.io/toppais"
+
 
 
 let estado = 'republica';
