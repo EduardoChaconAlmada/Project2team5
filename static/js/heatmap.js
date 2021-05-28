@@ -1,11 +1,6 @@
-
-
 var url = "/mapa";
-var st_url = "./Resources/mexican_states.json";
-let cropurl = "/estadocrop"
-
-
-
+var st_url = "/mexican_states";
+let cropurl = "/estadocrop";
 
 let estado = 'republica';
 let crop = 'all';
@@ -32,9 +27,9 @@ d3.select("button").on("click",(d)=>{
 
   //removing the map and generating a new one
   map.remove();
-  let mapdiv = d3.select(".mapbox").append("div").classed("row-fluid", true).attr("id", "map");
-  mapdiv.append("img").attr("src", "//placehold.it/800x900")
-    
+  let mapdiv = d3.select(".mapbox").append("div").classed("row-fluid", true).attr("id", "map").attr("style", "height: 850px");
+  
+  
   let estado = d3.select("#region").node().value;
   let crop = d3.select("#crop").node().value;
   let estmod = 'republica';

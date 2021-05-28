@@ -31,6 +31,12 @@ def visualizations():
     # go to home page to scrape info
     return render_template("Agricultura_HTML.html")
 
+@app.route("/mexican_states")
+def perimeter():
+    # go to home page to scrape info
+    return render_template("mexican_states.html")
+
+
 @app.route("/toppais")
 def toppais():
     data = engine.execute(
